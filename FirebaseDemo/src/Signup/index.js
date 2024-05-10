@@ -5,7 +5,7 @@ import {
   TextInput,
   Pressable,
   StyleSheet,
-  Image,
+  Image, ScrollView
 } from "react-native";
 import first from "../image/search.png";
 import second from "../image/facebook.png";
@@ -15,7 +15,20 @@ import FloatingTextInput from "../components/TextInput";
 const Signup = ({navigation}) => {
   return (
     <View style={styles.container}>
-
+      < ScrollView showsVerticalScrollIndicator={false}>
+ <View style={{flexDirection:"row",justifyContent:"center",backgroundColor:"orange",borderRadius:10,marginLeft:25,marginRight:25,padding:6}}>
+      <Pressable onPress={() =>
+        navigation.navigate('Login')
+      }>
+        <Text style={{color:"white"}}>Sign In</Text>
+      </Pressable>
+      <Text style={{color:"white",marginLeft:15}}>|</Text>
+      <Pressable onPress={() =>
+        navigation.navigate('Signup')
+      }>
+        <Text style={{color:"white",marginLeft:15}}>Sign Up</Text>
+      </Pressable>
+      </View>
       <Text style={styles.loginText}>Sign Up</Text>
       <FloatingTextInput label={"Name"} placeholder={"Enter A Name"} secureTextEntry={false}/>
       <Text style={styles.label}>Email</Text>
@@ -81,6 +94,7 @@ const Signup = ({navigation}) => {
           <Image source={third} style={styles.image} />
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 };

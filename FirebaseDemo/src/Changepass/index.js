@@ -6,8 +6,8 @@ const Changepass=({navigation})=>{
     return(
         <View style={{margin:10}}>
             {/* <Text>Hello</Text> */}
-      <FloatingTextInput label={"New Password"} placeholder={"Enter A New Password"} secureTextEntry={false} />
-      <FloatingTextInput label={"Confirm Password"} placeholder={"Enter A Confirm Password"} secureTextEntry={false} />
+      <FloatingTextInput label={"New Password"} placeholder={"Enter A New Password"} secureTextEntry={true} />
+      <FloatingTextInput label={"Confirm Password"} placeholder={"Enter A Confirm Password"} secureTextEntry={true} />
       <Pressable style={styles.signInButton} onPress={() =>
         navigation.navigate('Passchanged')
       }>
