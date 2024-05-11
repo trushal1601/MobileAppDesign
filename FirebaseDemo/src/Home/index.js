@@ -5,6 +5,7 @@ import Signup from "../Signup";
 import Forget from "../Forget";
 import Changepass from "../Changepass";
 import Passchanged from "../Passchanged";
+import Editprofile from "../Editprofile";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -38,12 +39,18 @@ const Home = () => {
               label="Signup"
               onPress={() => props.navigation.navigate('Signup')}
             />
+            <DrawerItem
+              label="Edit Profile"
+              onPress={() => props.navigation.navigate('Editprofile')}
+            />
           </View>
         </DrawerContentScrollView>
       )} >
         <Drawer.Screen name="Main" component={BottomTabNavigation} />
         <Drawer.Screen name="Login" component={Login} /> 
         <Drawer.Screen name="Signup" component={Signup} />
+        <Drawer.Screen name="Editprofile" component={Editprofile} />
+
       </Drawer.Navigator>
     );
   };
@@ -70,6 +77,8 @@ const Home = () => {
           <Stack.Screen name="Forget" component={Forget} />
           <Stack.Screen name="Changepass" component={Changepass} />
           <Stack.Screen name="Passchanged" component={Passchanged} />
+          <Stack.Screen name="Editprofile" component={Editprofile} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </>

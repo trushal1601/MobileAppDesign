@@ -9,9 +9,11 @@ import {
 import Home from "./src/Home";
 import Login from "./src/Login";
 import Signup from "./src/Signup";
+import Editprofile from "./src/Editprofile";
+import Paymentmethod from "./src/Paymentmethod";
 
 export default function App() {
-  return <Home />;
+  return <Paymentmethod />;
 }
 
 const styles = StyleSheet.create({

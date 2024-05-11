@@ -21,15 +21,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     marginLeft: "4%",
-    marginTop: 40,
+    marginTop: 12,
+    marginBottom:4
+    
   },
   input: {
     // textAlign: "center",
-    marginBottom: 5,
+    marginBottom: 3,
     borderWidth: 2,
     borderRadius: 25,
     paddingLeft: 15,
     padding: 7,
+    
   },
 });
 
