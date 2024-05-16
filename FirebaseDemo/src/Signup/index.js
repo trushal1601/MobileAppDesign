@@ -16,7 +16,7 @@ const Signup = ({navigation}) => {
   return (
     <View style={styles.container}>
       < ScrollView showsVerticalScrollIndicator={false}>
- <View style={{flexDirection:"row",justifyContent:"center",backgroundColor:"orange",borderRadius:10,marginLeft:25,marginRight:25,padding:6}}>
+ <View style={{flexDirection:"row",justifyContent:"center",backgroundColor:"red",borderRadius:10,marginLeft:25,marginRight:25,padding:6}}>
       <Pressable onPress={() =>
         navigation.navigate('Login')
       }>
@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 20,
-    backgroundColor: "orange",
+    backgroundColor: "red",
   },
   buttonText: {
     color: "white",
   },
   forgotPassword: {
-    color: "orange",
+    color: "red",
     textAlign: "right",
     marginRight: 10,
     marginTop: 10,

@@ -9,7 +9,7 @@ const Paymentmethod = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flexDirection: "row", marginTop: 40 }}>
-        <Pressable onPress={() => navigation.navigate('Login')}>
+        <Pressable onPress={() => navigation.navigate('Main')}>
           <Image source={Back} style={{ height: 20, width: 30 }} />
         </Pressable>
         <Text style={{ textAlign: "center", fontWeight: "bold", marginLeft: "23%", fontSize: 20 }}>
@@ -17,13 +17,13 @@ const Paymentmethod = ({ navigation }) => {
         </Text>
       </View>
       <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:10}}>
-        <Text style={{fontSize:20,fontWeight:"500",marginLeft:5}}>Credit Cards</Text>
+        <Text style={{fontSize:20,fontWeight:"500",marginLeft:5}}> Cards</Text>
         <Text style={{color:"red",marginRight:5}}>Add +</Text>
       </View>
       <View style={{height:140}}>
       <ScrollView horizontal style={{ marginTop: 20, height:20 }} showsHorizontalScrollIndicator={false} >
         <View style={{ flexDirection: 'row', height:100 }}>
-          <View style={{ backgroundColor: "orange", width: 200, marginLeft: 20, borderRadius: 10, padding: 10, marginRight: 10 }}>
+          <View style={{ backgroundColor: "red", width: 200, marginLeft: 20, borderRadius: 10, padding: 10, marginRight: 10 }}>
             <Text style={{ color: "white" }}>9897 6565 3232 5454</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
               <Text style={{ color: "white", fontSize: 13 }}>Titanium Debit</Text>

@@ -8,7 +8,7 @@ const Passchanged=({navigation})=>{
                 Hello , Your Password has been changed
             </Text>
             <Pressable onPress={() =>
-        navigation.navigate('Login')
+        navigation.navigate('Main')
       }>
                 <Text style={{color:"red",textAlign:"center"}}>Back To Login</Text>
             </Pressable>

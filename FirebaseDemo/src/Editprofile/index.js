@@ -14,7 +14,7 @@ const Editprofile = ({navigation})=>{
                 {
                     text: "OK",
                     onPress: () => {
-                        navigation.navigate("Login");
+                        navigation.navigate("Main");
                     },
                 },
             ]
@@ -26,7 +26,7 @@ const Editprofile = ({navigation})=>{
         <View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{flexDirection:"row",marginTop:40}}>
-                    <Pressable onPress={() => navigation.navigate('Login')}>
+                    <Pressable onPress={() => navigation.navigate('Main')}>
                         <Image source={Back} style={{height:20,width:30}} />
                     </Pressable>
                     <Text style={{textAlign:"center",fontWeight:"bold",marginLeft:"30%",fontSize:20}}>
@@ -49,7 +49,7 @@ const Editprofile = ({navigation})=>{
                         alignItems: "center",
                         padding: 10,
                         borderRadius: 20,
-                        backgroundColor: "orange",
+                        backgroundColor: "red",
                         margin:20
                     }}
                     onPress={handleProfileUpdate}

@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            backgroundColor: "orange",
+            backgroundColor: "red",
             borderRadius: 10,
             marginLeft: 25,
             marginRight: 25,
@@ -135,13 +135,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 20,
-    backgroundColor: "orange",
+    backgroundColor: "red",
   },
   buttonText: {
     color: "white",
   },
   forgotPassword: {
-    color: "orange",
+    color: "red",
     textAlign: "right",
     marginRight: 10,
     marginTop: 10,

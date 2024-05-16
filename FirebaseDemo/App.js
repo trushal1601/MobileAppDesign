@@ -11,9 +11,14 @@ import Login from "./src/Login";
 import Signup from "./src/Signup";
 import Editprofile from "./src/Editprofile";
 import Paymentmethod from "./src/Paymentmethod";
+import Addnewcard from "./src/Addnewcard";
+import Myaddress from "./src/Myaddress";
+import Changepass from "./src/Changepass";
+import Addnewaddress from "./src/Addnewaddress";
+import Myfavourite from "./src/Myfavourite";
 
 export default function App() {
-  return <Paymentmethod />;
+  return <Home />;
 }
 
 const styles = StyleSheet.create({
