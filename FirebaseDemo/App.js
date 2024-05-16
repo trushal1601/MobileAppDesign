@@ -16,6 +16,7 @@ import Myaddress from "./src/Myaddress";
 import Changepass from "./src/Changepass";
 import Addnewaddress from "./src/Addnewaddress";
 import Myfavourite from "./src/Myfavourite";
+import Orderhistory from "./src/Orderhistory";
 
 export default function App() {
   return <Home />;
