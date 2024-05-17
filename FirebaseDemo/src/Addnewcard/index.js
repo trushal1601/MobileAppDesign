@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { View ,Text, Pressable,Image,TextInput} from "react-native";
 import Back from "../image/left.png";
 import FloatingTextInput from "../components/TextInput";
 
 
 const Addnewcard=({navigation})=>{
+
+  const[cardNumber,setCardNumber]=useState();
+  
+
+  const handleChange = (inputText) => {
+    setCardNumber(inputText);
+  };
+
     return(
         <View>
             <View style={{ flexDirection: "row", marginTop: 40 }}>
@@ -16,17 +24,32 @@ const Addnewcard=({navigation})=>{
         </Text>
       </View>
       <View style={{ backgroundColor: "green", width: 330,marginLeft:15, borderRadius: 10, padding: 10,marginTop:20 }}>
-            <Text style={{ color: "white" }}>9897 6565 3232 5454</Text>
+            <Text style={{ color: "white" ,fontSize:20}}>{cardNumber}</Text>      
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
               <Text style={{ color: "white", fontSize: 13 ,paddingBottom:10}}>Titanium Debit</Text>
               <Text style={{ color: "white", fontSize: 13  ,paddingBottom:10}}>EXP. 12/25</Text>
             </View>
           </View>
           <View style={{margin:15}}>
-          <FloatingTextInput label={"Name"} placeholder={"Enter A Name"} secureTextEntry={false}/>
-          <FloatingTextInput label={"Card Number"} placeholder={"Enter A Card Number"} secureTextEntry={false}/>
+          <FloatingTextInput label={"Name"} placeholder={"Enter A Name"} secureTextEntry={false} />
+        <Text style={{fontSize: 14,
+    fontWeight: "bold",
+    marginLeft: "4%",
+    marginTop: 20,}}>Card Number</Text>
+          <TextInput
+          placeholder="Enter A Card Number "
+          style={{ borderWidth: 2,
+            borderRadius: 25,
+            paddingLeft: 15,
+            padding: 7,}}
+         keyboardType="numeric"
+            onChangeText={handleChange}
+           maxLength={12}
+          
+        />
          <View style={{flexDirection:"row",margin:0}} >
             <View>
+           
       <Text style={{fontSize: 13,
     fontWeight: "bold",
     marginLeft: "9%",

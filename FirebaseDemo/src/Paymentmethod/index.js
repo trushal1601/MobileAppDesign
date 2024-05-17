@@ -1,13 +1,52 @@
 import React from "react";
-import { Text, View, Pressable, Image, ScrollView } from "react-native";
+import { Text, View, Pressable, Image, ScrollView ,FlatList } from "react-native";
 import Back from "../image/left.png";
 import Apple from "../image/social.png";
 import Edit from "../image/edit.png";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-
+const DATA = [
+  {
+    number: '9897 6565 3232 5454',
+    debitName: 'Titanium Debit',
+    expDate:'EXP. 12/25',
+    backgroundColor: "red"
+  },
+  {
+    number: '9897 6262 3232 5454',
+    debitName: 'Kristian Debit',
+    expDate:'EXP. 12/25',
+    backgroundColor: "green"
+  },
+  {
+    number: '9897 6565 3232 5454',
+    debitName: 'Credit Debit',
+    expDate:'EXP. 12/25',
+    backgroundColor: "blue"
+  },
+  {
+    number: '9897 6565 3232 5454',
+    debitName: 'Credit Debit',
+    expDate:'EXP. 12/25',
+    backgroundColor: "orange"
+  }
+];
+const renderItem = ({item}) =>{
+  // console.log("item.number",item.number);
+  let color = item.backgroundColor
+  return(
+    <View style={{ backgroundColor: color ,height:"70%", width: 200, marginLeft: 20, borderRadius: 10, padding: 10,marginTop:15 }}>
+    <Text style={{ color: "white" }}>{item.number}</Text>
+    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
+      <Text style={{ color: "white", fontSize: 13 }}>{item.debitName}</Text>
+      <Text style={{ color: "white", fontSize: 13 }}>{item.expDate}</Text>
+    </View>
+  </View>
+  )
+}
 const Paymentmethod = ({ navigation }) => {
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flexDirection: "row", marginTop: 40 }}>
         <Pressable onPress={() => navigation.navigate('Main')}>
           <Image source={Back} style={{ height: 20, width: 30 }} />
@@ -21,38 +60,12 @@ const Paymentmethod = ({ navigation }) => {
         <Text style={{color:"red",marginRight:5}}>Add +</Text>
       </View>
       <View style={{height:140}}>
-      <ScrollView horizontal style={{ marginTop: 20, height:20 }} showsHorizontalScrollIndicator={false} >
-        <View style={{ flexDirection: 'row', height:100 }}>
-          <View style={{ backgroundColor: "red", width: 200, marginLeft: 20, borderRadius: 10, padding: 10, marginRight: 10 }}>
-            <Text style={{ color: "white" }}>9897 6565 3232 5454</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
-              <Text style={{ color: "white", fontSize: 13 }}>Titanium Debit</Text>
-              <Text style={{ color: "white", fontSize: 13 }}>EXP. 12/25</Text>
-            </View>
-          </View>
-          <View style={{ backgroundColor: "blue", width: 200, borderRadius: 10, padding: 10, marginRight: 10 }}>
-            <Text style={{ color: "white" }}>9897 6565 3232 5454</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
-              <Text style={{ color: "white", fontSize: 13 }}>Kristian Debit</Text>
-              <Text style={{ color: "white", fontSize: 13 }}>EXP. 12/25</Text>
-            </View>
-          </View>
-          <View style={{ backgroundColor: "black", width: 200, borderRadius: 10, padding: 10 ,marginRight: 10 }}>
-            <Text style={{ color: "white" }}>9897 6565 3232 5454</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
-              <Text style={{ color: "white", fontSize: 13 }}>Credit Debit</Text>
-              <Text style={{ color: "white", fontSize: 13 }}>EXP. 12/25</Text>
-            </View>
-          </View>
-          <View style={{ backgroundColor: "red", width: 200, borderRadius: 10, padding: 10 , marginRight:20}}>
-            <Text style={{ color: "white" }}>9897 6565 3232 5454</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "20%" }}>
-              <Text style={{ color: "white", fontSize: 13 }}>Credit Debit</Text>
-              <Text style={{ color: "white", fontSize: 13 }}>EXP. 12/25</Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+       <FlatList
+       horizontal
+        data={DATA}
+        renderItem={renderItem}
+        showsHorizontalScrollIndicator={false}
+      />
       </View>
       <View style={{borderWidth:1,margin:10,borderRadius:10,padding:15,flexDirection:"row",justifyContent:"space-between"}} >
       <View >
@@ -82,7 +95,7 @@ const Paymentmethod = ({ navigation }) => {
       </View>
      
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
