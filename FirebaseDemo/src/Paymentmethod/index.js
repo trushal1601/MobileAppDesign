@@ -10,7 +10,7 @@ const DATA = [
     number: '9897 6565 3232 5454',
     debitName: 'Titanium Debit',
     expDate:'EXP. 12/25',
-    backgroundColor: "red"
+    backgroundColor: "rgba(33,150,243,255)"
   },
   {
     number: '9897 6262 3232 5454',
@@ -28,7 +28,7 @@ const DATA = [
     number: '9897 6565 3232 5454',
     debitName: 'Credit Debit',
     expDate:'EXP. 12/25',
-    backgroundColor: "orange"
+    backgroundColor: "rgba(33,150,243,255)"
   }
 ];
 const renderItem = ({item}) =>{
@@ -57,7 +57,7 @@ const Paymentmethod = ({ navigation }) => {
       </View>
       <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:10}}>
         <Text style={{fontSize:20,fontWeight:"500",marginLeft:5}}> Cards</Text>
-        <Text style={{color:"red",marginRight:5}}>Add +</Text>
+        <Text style={{color:"rgba(33,150,243,255)",marginRight:5}}>Add +</Text>
       </View>
       <View style={{height:140}}>
        <FlatList

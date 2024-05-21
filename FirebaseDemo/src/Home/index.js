@@ -28,7 +28,7 @@ const Home = () => {
        drawerContent={(props) => (
         <DrawerContentScrollView {...props}>
           <View>
-            <View style={{backgroundColor:"red",height:150,padding:20}}>
+            <View style={{backgroundColor:"rgba(33,150,243,255)",height:150,padding:20}}>
             <Text style={{color:"white",fontSize:20,fontWeight:"bold"}}>My Profile</Text>
             </View>
             <View style={{flexDirection:"row",borderWidth:2,padding:10,borderRadius:20,backgroundColor:"white",margin:10,marginTop:-55,

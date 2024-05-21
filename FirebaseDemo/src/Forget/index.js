@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 10,
         borderRadius: 20,
-        backgroundColor: "red",
+        backgroundColor: "rgba(33,150,243,255)",
         margin:10
       },
       buttonText: {

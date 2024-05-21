@@ -7,12 +7,24 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  navigate,
+  Button,Alert,Linking
 } from "react-native";
 import first from "../image/search.png";
 import second from "../image/facebook.png";
-import third from "../image/twitter.png";
+import third from "../image/instagram.png";
 import FloatingTextInput from "../components/TextInput";
+import { Formik, } from 'formik';
+import * as yup from 'yup';
+
+const handlePress1 = () => {
+  Linking.openURL('https://www.facebook.com/people/InfoLanze-Tech/61555278311151/');
+};
+const handlePress2 = () => {
+  Linking.openURL('https://www.infolanze.tech/');
+};
+const handlePress = () => {
+  Linking.openURL('https://www.instagram.com/infolanze/?igsh=OXR2d2I4Mm1mMDZt');
+};
 
 const Signup = ({ navigation }) => {
   const [name, setName] = useState();
@@ -20,47 +32,68 @@ const Signup = ({ navigation }) => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const [nameError, setNameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [passwordMatchError, setPasswordMatchError] = useState(false);
+  // const [nameError, setNameError] = useState(false);
+  // const [emailError, setEmailError] = useState(false);
+  // const [passwordError, setPasswordError] = useState(false);
+  // const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  // const [passwordMatchError, setPasswordMatchError] = useState(false);
 
-  const saveData = () => {
-      if(!name){
-        setNameError(true)
-      }else{
-        setNameError(false)
-      }
-      if(!email){
-        setEmailError(true)
-      }else{
-        setEmailError(false)
-      }
-      if(!password){
-        setPasswordError(true)
+  // const saveData = () => {
+  //     if(!name){
+  //       setNameError(true)
+  //     }else{
+  //       setNameError(false)
+  //     }
+  //     if(!email){
+  //       setEmailError(true)
+  //     }else{
+  //       setEmailError(false)
+  //     }
+  //     if(!password){
+  //       setPasswordError(true)
 
-      }else{
-        setPasswordError(false)
-      }
-      if(!confirmPassword){
-        setConfirmPasswordError(true)
-      }else{
-        setConfirmPasswordError(false)
-      }
-      if (password !== confirmPassword) {
-        setPasswordMatchError(true);
-        valid = false;
-      } else {
-        setPasswordMatchError(false);
-      }
+  //     }else{
+  //       setPasswordError(false)
+  //     }
+  //     if(!confirmPassword){
+  //       setConfirmPasswordError(true)
+  //     }else{
+  //       setConfirmPasswordError(false)
+  //     }
+  //     if (password !== confirmPassword) {
+  //       setPasswordMatchError(true);
+  //       valid = false;
+  //     } else {
+  //       setPasswordMatchError(false);
+  //     }
 
-      if(!name || !email || !password || !confirmPassword || password !== confirmPassword){
-        return false
-      }
+  //     if(!name || !email || !password || !confirmPassword || password !== confirmPassword){
+  //       return false
+  //     }
 
-    navigation.navigate('Login');
-      };
+  //   navigation.navigate('Login');
+  //     };
+  const loginValidationSchema = yup.object().shape({
+    username:yup
+      .string()
+      .required(' name is Required')
+      .matches(/^[A-Za-z\s]+$/, 'Name cannot contain numbers'),
+    email: yup
+      .string()
+      .email("Please enter valid email")
+      .required('Email Address is Required'),
+    password: yup
+    .string()
+  .matches(/\w*[a-z]\w*/,  "Password must have a small letter")
+  .matches(/\w*[A-Z]\w*/,  "Password must have a capital letter")
+  .matches(/\d/, "Password must have a number")
+  .min(8, ({ min }) => `Password must be at least ${min} characters`)
+  .required('Password is required'),
+  phonenumber: yup
+      .string()
+      .required('Phone Number is required')
+      .matches(/^[6-9]\d{9}$/, 'Phone number must start with a digit between 6 and 9 and be exactly 10 digits'),
+    })
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,7 +101,7 @@ const Signup = ({ navigation }) => {
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            backgroundColor: "red",
+            backgroundColor: "rgba(33,150,243,255)",
             borderRadius: 10,
             marginLeft: 25,
             marginRight: 25,
@@ -84,7 +117,7 @@ const Signup = ({ navigation }) => {
           </Pressable>
         </View>
         <Text style={styles.loginText}>Sign Up</Text>
-        <Text style={styles.label}>Name</Text>
+        {/* <Text style={styles.label}>Name</Text>
         <TextInput
           placeholder="Enter A Name here"
           style={styles.input}
@@ -140,17 +173,85 @@ const Signup = ({ navigation }) => {
           <Text style={{ color: "red", marginLeft: 12, marginTop: 10 }}>
             Password Does Not Matched
           </Text>
-        ) : null}
+        ) : null} */}
 
         {/* <Pressable  onPress={() =>
         navigation.navigate('Forget')
       }>
         <Text style={styles.forgotPassword}>Forget Password?</Text>
       </Pressable> */}
+      <Formik
+            validationSchema={loginValidationSchema}
+            initialValues={{ username: '',email: '', password: '', cpassword: '' }}
+            onSubmit={values => console.log(values)}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values,errors,isValid,touched }) => (
+              <>
+               <TextInput
+                  name="username"
+                  placeholder="Enter Username "
+                  style={styles.textInput}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                  value={values.username}
+                  keyboardType="text"
+                />
+                {errors.username &&
+         <Text style={{ fontSize: 10, color: 'red',marginLeft:14,marginTop:-20 }}>{errors.username}</Text>
+       }
+                <TextInput
+                  name="email"
+                  placeholder="Email Address"
+                  style={styles.textInput}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  keyboardType="email-address"
+                />
+                {errors.email &&
+         <Text style={{ fontSize: 10, color: 'red',marginLeft:14,marginTop:-18 }}>{errors.email}</Text>
+       }
+        <TextInput
+                  name="phonenumber"
+                  placeholder="Enter Phonenumber"
+                  style={styles.textInput}
+                  onChangeText={handleChange('phonenumber')}
+                  onBlur={handleBlur('phonenumber')}
+                  value={values.phonenumber}
+                  keyboardType="numeric"
+                />
+                {errors.phonenumber &&
+         <Text style={{ fontSize: 10, color: 'red' ,marginLeft:10,marginTop:-18,}}>{errors.phonenumber}</Text>
+       }
+                <TextInput
+                  name="password"
+                  placeholder="Password"
+                  style={styles.textInput}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  secureTextEntry
+                />
+                 {errors.password  &&
+         <Text style={{ fontSize: 10, color: 'red' ,marginLeft:10,marginTop:-18}}>{errors.password}</Text>
+       }
+               
+                 <Pressable  onPress={() =>
+        navigation.navigate('Forget')
+      }>
+        <Text style={styles.forgotPassword}>Forget Password?</Text>
+      </Pressable>
+      <View style={{ paddingLeft:10,paddingRight:9}}> 
+                <Button onPress={handleSubmit}   title="Submit"  />
+                </View>
+              </>
+            )}
+          </Formik>
 
-        <Pressable style={styles.signUpButton} onPress={saveData}>
+
+        {/* <Pressable style={styles.signUpButton} >
           <Text style={styles.buttonText}>Sign Up</Text>
-        </Pressable>
+        </Pressable> */}
 
         <View
           style={{
@@ -175,15 +276,15 @@ const Signup = ({ navigation }) => {
             marginTop: 30,
           }}
         >
-          <View style={{ marginRight: 10 }}>
+          <Pressable style={{ marginRight: 10 }}  onPress={handlePress1}>
             <Image source={second} style={styles.image} />
-          </View>
-          <View style={{ marginRight: 10 }}>
+          </Pressable>
+          <Pressable style={{ marginRight: 10 }}  onPress={handlePress2}>
             <Image source={first} style={styles.image} />
-          </View>
-          <View>
-            <Image source={third} style={styles.image} />
-          </View>
+          </Pressable>
+          <Pressable onPress={handlePress}>
+            <Image source={third} style={styles.image}   />
+          </Pressable>
         </View>
       </ScrollView>
     </View>
@@ -208,6 +309,17 @@ const styles = StyleSheet.create({
     marginLeft: "4%",
     marginTop: 20,
   },
+  textInput:{
+    height: 40,
+    width: '95%',
+    margin: 10,
+    backgroundColor: 'white',
+    borderColor: 'gray',
+    borderWidth:1,
+    borderRadius: 10,
+    padding:10,
+    marginBottom:20
+  },
   input: {
     // textAlign: "center",
     // marginTop: 1,
@@ -230,7 +342,8 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "right",
     marginRight: 10,
-    marginTop: 10,
+    marginTop: -15,
+    marginBottom:40,
   },
   signUpLink: {
     color: "red",

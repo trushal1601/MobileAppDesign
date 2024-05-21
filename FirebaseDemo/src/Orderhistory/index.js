@@ -56,7 +56,7 @@ const Orderhistory=({navigation})=>{
                     }}
                   
                 >
-                    <Text style={{ color: "red" ,fontWeight:"bold"}}>REPEAT ORDER</Text>
+                    <Text style={{ color: "rgba(33,150,243,255)" ,fontWeight:"bold"}}>REPEAT ORDER</Text>
                 </Pressable>
                 <View style={{margin:15,marginTop:-10,flexDirection:"row",  shadowColor:"gray",elevation:20,backgroundColor:"white",borderRadius:20,marginTop:10}}>
         <View>

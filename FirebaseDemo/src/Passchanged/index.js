@@ -10,7 +10,7 @@ const Passchanged=({navigation})=>{
             <Pressable onPress={() =>
         navigation.navigate('Main')
       }>
-                <Text style={{color:"red",textAlign:"center"}}>Back To Login</Text>
+                <Text style={{color:"rgba(33,150,243,255)",textAlign:"center"}}>Back To Login</Text>
             </Pressable>
         </View>
     )
