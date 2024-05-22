@@ -17,21 +17,22 @@ import { Formik, } from 'formik';
 import * as yup from 'yup';
 // import { NavigationContainer } from "@react-navigation/native";
 
-const loginValidationSchema = yup.object().shape({
- 
-  email: yup
-    .string()
-    .email("Please enter valid email")
-    .required('Email Address is Required'),
-  password: yup
-  .string()
-  .matches(/\w*[a-z]\w*/,  "Password must have a small letter")
-  .matches(/\w*[A-Z]\w*/,  "Password must have a capital letter")
-  .matches(/\d/, "Password must have a number")
-  .min(8, ({ min }) => `Password must be at least ${min} characters`)
-  .required('Password is required'),
-})
+
 const Login = ({ navigation }) => {
+  const loginValidationSchema = yup.object().shape({
+ 
+    email: yup
+      .string()
+      .email("Please enter valid email")
+      .required('Email Address is Required'),
+    password: yup
+    .string()
+    .matches(/\w*[a-z]\w*/,  "Password must have a small letter")
+    .matches(/\w*[A-Z]\w*/,  "Password must have a capital letter")
+    .matches(/\d/, "Password must have a number")
+    .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .required('Password is required'),
+  })
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
