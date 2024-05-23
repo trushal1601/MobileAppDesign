@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,7 +7,9 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Button
+  Button,
+  Alert,
+  ActivityIndicator
 } from "react-native";
 import first from "../image/search.png";
 import second from "../image/facebook.png";
@@ -15,10 +17,11 @@ import third from "../image/instagram.png";
 import FloatingTextInput from "../components/TextInput";
 import { Formik, } from 'formik';
 import * as yup from 'yup';
-// import { NavigationContainer } from "@react-navigation/native";
-
+import axios from 'axios';
 
 const Login = ({ navigation }) => {
+
+  const[showLoader,setShowLoader]=useState(false);
   const loginValidationSchema = yup.object().shape({
  
     email: yup
@@ -32,7 +35,40 @@ const Login = ({ navigation }) => {
     .matches(/\d/, "Password must have a number")
     .min(8, ({ min }) => `Password must be at least ${min} characters`)
     .required('Password is required'),
-  })
+  });
+
+  const handleSubmit = async (values,{resetForm}) => {
+    setShowLoader(true);
+    try {
+      const response = await axios.post('https://backend-livid-chi-10.vercel.app/api/auth/login', {
+        email: values.email,
+        password: values.password,
+      });
+  
+      console.log("Response data:", response.data);
+     
+      if (response.data.status === true) {
+        resetForm();
+        navigation.navigate('Welcome');
+      } else {
+        Alert.alert("Password not matched");
+      }
+    } catch (error) {
+     
+      if (error.response && error.response.data) {
+        Alert.alert("Error", error.response.data.message || "An error occurred");
+      } else {
+        Alert.alert("Error", "An error occurred");
+      } 
+    }
+
+   
+
+    setTimeout(() => {
+      setShowLoader(false);
+    }, 3000);
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -56,33 +92,12 @@ const Login = ({ navigation }) => {
           </Pressable>
         </View>
         <Text style={styles.loginText}>Sign In</Text>
-        {/* <View>
-          <Text style={styles.label}>Email</Text>
-          <TextInput
-            placeholder="Enter An Email here"
-            style={styles.input}
-            accessible={true}
-            accessibilityLabel="Email Input"
-          />
-        </View>
-
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          placeholder="Enter A Password here"
-          style={styles.input}
-          secureTextEntry={true}
-          accessible={true}
-          accessibilityLabel="Password Input"
-        /> */}
-        {/* <Pressable onPress={() => navigation.navigate("Forget")}>
-          <Text style={styles.forgotPassword}>Forget Password?</Text>
-        </Pressable> */}
          <Formik
             validationSchema={loginValidationSchema}
             initialValues={{email: '', password: '',  }}
-            onSubmit={values => console.log(values)}
+            onSubmit={handleSubmit}
           >
-            {({ handleChange, handleBlur, handleSubmit, values,errors,isValid,touched }) => (
+            {({ handleChange, handleBlur, handleSubmit, values,errors,isValid,touched, }) => (
               <>
                <View style={{}}>
                 <TextInput
@@ -119,18 +134,14 @@ const Login = ({ navigation }) => {
                  {errors.password  &&
          <Text style={{ fontSize: 10, color: 'red' ,marginLeft:14,}}>{errors.password}</Text>
        }
+       
                
                 <View style={{marginTop:13 , paddingLeft:10,paddingRight:9}}>
-                <Button onPress={handleSubmit} title="Submit"  />
+                {showLoader ? <ActivityIndicator size={20} color="blue" animating={showLoader}/>: <Button onPress={handleSubmit} title="Submit"  />} 
                 </View>
               </>
             )}
           </Formik>
-
-        {/* <Pressable style={styles.signInButton}>
-          <Text style={styles.buttonText}>Sign In</Text>
-        </Pressable> */}
-
         <View
           style={{
             flexDirection: "row",
@@ -165,7 +176,6 @@ const Login = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-      {/* <FloatingTextInput label={"aaaaa"} placeholder={"paswo"} secureTextEntry={true}/> */}
     </View>
   );
 };
@@ -190,7 +200,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   input: {
-    // textAlign: "center",
     marginTop: 5,
     borderWidth: 2,
     borderRadius: 25,
@@ -228,7 +237,6 @@ const styles = StyleSheet.create({
  
   signUpLink: {
     color: "red",
-    // marginTop: 10,
   },
   image: {
     alignSelf: "center",
@@ -236,7 +244,6 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderWidth: 4,
-    // borderColor:"white",
     borderRadius: 3,
   },
 });

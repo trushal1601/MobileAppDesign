@@ -12,6 +12,7 @@ import Myaddress from "../Myaddress";
 import Addnewaddress from "../Addnewaddress";
 import Myfavourite from "../Myfavourite";
 import Orderhistory from "../Orderhistory";
+import Welcome from "../Welcome";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -105,6 +106,7 @@ const Home = () => {
         <Drawer.Screen name="Addnewaddress" component={Addnewaddress} />
         <Drawer.Screen name="Myfavourite" component={Myfavourite} />
         <Drawer.Screen name="Orderhistory" component={Orderhistory} />
+        <Drawer.Screen name="Welcome" component={Welcome} />
 
 
       </Drawer.Navigator>
@@ -140,6 +142,7 @@ const Home = () => {
           <Stack.Screen name="Addnewaddress" component={Addnewaddress} />
           <Stack.Screen name="Myfavourite" component={Myfavourite} />
           <Stack.Screen name="Orderhistory" component={Orderhistory} />
+          <Stack.Screen name="Welcome" component={Welcome} />
 
 
         </Stack.Navigator>
